@@ -1,0 +1,17 @@
+# build outputs
+purplegaze
+*.o
+
+# editor / OS files
+*.swp
+*.swo
+*.tmp
+.DS_Store
+
+# debug files
+*.log
+core
+
+# private memo
+memo/
+
