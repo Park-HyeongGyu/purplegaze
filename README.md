@@ -1,18 +1,19 @@
 ## Overview - Purplegaze
 Purplegaze is a lightweight server monitoring program. 
 
-When your server reaches a preassigned status, e.g. when the CPU temperature rises above an appointed criterion, purplegaze sends you a Telegram report. Also, you can receive a daily, weekly, or monthly (or any other period you set) report. It works with a Telegram bot. 
+When your server reaches a preassigned status, e.g. when the CPU temperature rises above an appointed criterion, Purplegaze sends you a report via Telegram. Also, you can receive a daily, weekly, or monthly (or any other period you set) report. It works with a Telegram bot. 
 
 
 ## Dependencies
 
 
 ## Features
+- Sending a Telegram message
 
 
 ## Developing
-- sending a Telegram message
 - fetching information about the server
+
 
 ## To Be Developed
 
@@ -22,3 +23,4 @@ Existing server management tools are too versatile to use for personal server ma
 
 ## Purpose
 Purplegaze is only invented for my home server management. It does not pursue any commercial purpose. If you like to modify some code and use it commercially, feel free to do so. It is under the MIT License.
+
