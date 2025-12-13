@@ -1,9 +1,10 @@
 #include <curl/curl.h>
-#include "telegram.h"
-#include "telegram/transport.h"
+#include "telegram/transport_http.h"
+
+tg_http_err_t send_http(const char *url, const char *paylord);
 
 /*
- * request_http
+ * send_http
  * Sends an HTTP POST request to the given URL with the given paylord.
  * It is only made for transportation. It does not parse paylord or url;
  * therefore requires authetic url and paylord.
@@ -13,9 +14,9 @@
  *  paylord - Request body (e.g. JSON)
  * 
  * Returns:
- *  tg_http_result_t indicates whether transportation successed or failed.
+ *  tg_http_err_t indicates whether transportation successed or failed.
 */
-tg_http_result_t request_http(const char *url, const char *paylord){
+tg_http_err_t send_http(const char *url, const char *paylord){
     /* Valudate input auguments */
     if (url == NULL || paylord == NULL){
         return TG_HTTP_ERR_INVALID_ARG;
@@ -50,14 +51,14 @@ tg_http_result_t request_http(const char *url, const char *paylord){
     curl_easy_setopt(curl, CURLOPT_TIMEOUT, 10L);
 
     /* Perform the HTTPS request (blocking call) */
-    CURLcode result = curl_easy_perform(curl);
-    if (result != CURLE_OK){
+    CURLcode err = curl_easy_perform(curl);
+    if (err != CURLE_OK){
         curl_easy_cleanup(curl);
 
-        if (result == CURLE_OPERATION_TIMEDOUT){
+        if (err == CURLE_OPERATION_TIMEDOUT){
             return TG_HTTP_ERR_TIMEOUT;
         }
-        if (result == CURLE_SSL_CONNECT_ERROR){
+        if (err == CURLE_SSL_CONNECT_ERROR){
             return TG_HTTP_ERR_SSL;
         }
 
