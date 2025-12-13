@@ -5,7 +5,7 @@ TARGET = purplegaze
 
 TELEGRAM_SRC = \
 	src/telegram/telegram.c \
-	src/telegram/transport.c
+	src/telegram/telegram_api.c
 
 STATUS_SRC = \
 	src/status/status.c
@@ -29,7 +29,7 @@ $(TARGET): $(OBJ)
 
 # ====== Test build ======
 test: clean $(TARGET)
-	@echo "Test flags: $(TEST_FLAGS)"
+	@echo "TESTING BUILD"
 
 # ====== Pattern rule ======
 src/%.o: src/%.c
