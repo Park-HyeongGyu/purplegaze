@@ -4,7 +4,8 @@ CFLAGS = -Wall -Wextra -std=c11 -Iinclude
 TARGET = purplegaze
 
 TELEGRAM_SRC = \
-	src/telegram/telegram.c
+	src/telegram/telegram.c \
+	src/telegram/transport.c
 
 STATUS_SRC = \
 	src/status/status.c
@@ -20,13 +21,13 @@ SRC = \
 
 OBJ = $(SRC:.c=.o)
 
+LDFLAGS = -lcurl
+
 # ====== Default build ======
 $(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ) $(LDFLAGS)
 
 # ====== Test build ======
-TEST_FLAGS = 
-test: CFLAGS += $(TEST_FLAGS) -g
 test: clean $(TARGET)
 	@echo "Test flags: $(TEST_FLAGS)"
 
