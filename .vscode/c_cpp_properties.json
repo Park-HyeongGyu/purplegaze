@@ -5,9 +5,9 @@
             "includePath": [
                 "${workspaceFolder}/include",
                 "${workspaceFolder}/src",
-                "${workspaceFolder}/src/telegram",
-                "${workspaceFolder}/src/config",
-                "${workspaceFolder}/src/status",
+                "${workspaceFolder}/include/telegram",
+                "${workspaceFolder}/include/config",
+                "${workspaceFolder}/include/status",
                 "/usr/include"
             ],
             "defines": [],
