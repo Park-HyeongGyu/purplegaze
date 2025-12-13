@@ -1,12 +1,16 @@
 #ifndef TELEGRAM_H
 #define TELEGRAM_H
 
-#include "telegram/transport.h"
+#include "telegram/bot.h"
 
-typedef struct{
-    char token[64];
-    char chat_id[32];
-} bot_t;
+typedef enum{
+    TG_OK = 0,
+
+    TG_ERR_VALID, // Validation failed
+    TG_ERR_PREP, // Rreparation of paylord and url failed
+    TG_ERR_TRANS // Transporting http failed
+} tg_err_t;
+
+tg_err_t send_telegram(const char *message, const bot_t *mybot);
 
 #endif /* TELEGRAM_H */
-

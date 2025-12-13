@@ -11,8 +11,8 @@ typedef enum {
     TG_HTTP_ERR_SSL,         // TLS / certificaiton error
     TG_HTTP_ERR_HTTP_RESPONSE_STATUS, // HTTP response status != 2xx
     TG_HTTP_ERR_INTERNAL
-} tg_http_result_t;
+} tg_http_err_t;
 
-tg_http_result_t request_http(const char *url, const char *paylord);
+tg_http_err_t send_http(const char *url, const char *paylord);
 
 #endif /* TRANSPORT_H */
