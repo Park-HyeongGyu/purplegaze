@@ -7,3 +7,4 @@ typedef struct bot{
 } bot_t;
 
 #endif /* BOT_H */
+
