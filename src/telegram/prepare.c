@@ -71,10 +71,13 @@ tg_paylord_err_t build_paylord(char *paylord,
         return TG_PAYLORD_ERR_EMPTY_CHAT_ID;
     }
 
-    /* Allocate message encoding buffer dynamically */
     char *encoded_message = NULL;
     size_t encoded_buffer_size;
 
+    int encoding_result;
+    int snprintf_result;
+
+    /* Allocate message encoding buffer dynamically */
     encoded_buffer_size = strlen(message)*3 +1;
     encoded_message = malloc(encoded_buffer_size);
     if (encoded_message == NULL){
@@ -82,7 +85,7 @@ tg_paylord_err_t build_paylord(char *paylord,
     }
 
     /* URL encoded */
-    int encoding_result = url_encode(message,
+    encoding_result = url_encode(message,
                             encoded_message, encoded_buffer_size);
     if (encoding_result != 0){
         free(encoded_message);
@@ -90,7 +93,7 @@ tg_paylord_err_t build_paylord(char *paylord,
     }
 
     /* Build paylord */
-    int snprintf_result = snprintf(paylord, paylord_buffer_size,
+    snprintf_result = snprintf(paylord, paylord_buffer_size,
                                 "chat_id=%s&text=%s", 
                                 mybot->chat_id, encoded_message);
     free(encoded_message);
