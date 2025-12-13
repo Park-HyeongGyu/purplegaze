@@ -13,6 +13,6 @@ typedef enum {
     TG_HTTP_ERR_INTERNAL
 } tg_http_err_t;
 
-tg_http_err_t request_http(const char *url, const char *paylord);
+tg_http_err_t send_http(const char *url, const char *paylord);
 
 #endif /* TRANSPORT_H */
