@@ -6,7 +6,8 @@ TARGET = purplegaze
 TELEGRAM_SRC = \
 	src/telegram/telegram.c \
 	src/telegram/transport_http.c \
-	src/telegram/prepare.c
+	src/telegram/prepare.c \
+	src/telegram/validate.c
 
 STATUS_SRC = \
 	src/status/status.c
