@@ -3,6 +3,8 @@
 
 tg_http_err_t send_http(const char *url, const char *paylord);
 
+static size_t discard_write_cb(void *ptr, size_t size, size_t nmemb, void *userdata);
+
 /*
  * send_http
  * Sends an HTTP POST request to the given URL with the given paylord.
@@ -50,6 +52,9 @@ tg_http_err_t send_http(const char *url, const char *paylord){
     curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 5L);
     curl_easy_setopt(curl, CURLOPT_TIMEOUT, 10L);
 
+    /* Discard HTTP response body */
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, discard_write_cb);
+
     /* Perform the HTTPS request (blocking call) */
     CURLcode err = curl_easy_perform(curl);
     if (err != CURLE_OK){
@@ -78,4 +83,15 @@ tg_http_err_t send_http(const char *url, const char *paylord){
     }
 
     return TG_HTTP_OK;
+}
+
+/* discard_write_cb
+ * This function is only designed to discard http response body result.
+ * Since Purplegaze is a demon program, it is desirable maintain stdout clean.
+ */
+static size_t discard_write_cb(void *ptr, size_t size, size_t nmemb, void *userdata)
+{
+    (void)ptr;
+    (void)userdata;
+    return size * nmemb;  //  Tell libcurl that all data was successfully handled.
 }
