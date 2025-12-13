@@ -20,9 +20,17 @@ SRC = \
 
 OBJ = $(SRC:.c=.o)
 
+# ====== Default build ======
 $(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
 
+# ====== Test build ======
+TEST_FLAGS = 
+test: CFLAGS += $(TEST_FLAGS) -g
+test: clean $(TARGET)
+	@echo "Test flags: $(TEST_FLAGS)"
+
+# ====== Pattern rule ======
 src/%.o: src/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
