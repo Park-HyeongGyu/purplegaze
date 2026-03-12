@@ -9,6 +9,7 @@ When your server reaches a preassigned status, e.g. when the CPU temperature ris
 
 ## Features
 - Sending a Telegram message
+- Fetching battery and charging status
 
 
 ## Developing
