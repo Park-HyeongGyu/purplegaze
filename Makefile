@@ -15,19 +15,25 @@ STATUS_SRC = \
 CONFIG_SRC = \
 	src/config/config.c
 
+BATTERY_MONITOR_SRC = \
+	src/battery_monitor/reader.c \
+	src/battery_monitor/battery_monitor.c
+
 SRC = \
 	src/main.c \
 	$(TELEGRAM_SRC) \
 	$(STATUS_SRC) \
-	$(CONFIG_SRC)
+	$(CONFIG_SRC) \
+	$(BATTERY_MONITOR_SRC)
 
 OBJ = $(SRC:.c=.o)
 
 LDFLAGS = -lcurl
+LIBS = -ludev
 
 # ====== Default build ======
 $(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ) $(LDFLAGS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ) $(LDFLAGS) $(LIBS)
 
 # ====== Test build ======
 test: clean $(TARGET)
